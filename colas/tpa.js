@@ -14,7 +14,7 @@ class Task {
 }
 class ResizeStrategy {
     async process(task) {
-        console.log(`📐 Redimensionando ${task.imageName}`);
+        console.log(` Redimensionando ${task.imageName}`);
         await this.simulateDelay();
     }
     simulateDelay() {
@@ -23,7 +23,7 @@ class ResizeStrategy {
 }
 class CompressStrategy {
     async process(task) {
-        console.log(`🗜 Comprimiendo ${task.imageName}`);
+        console.log(` Comprimiendo ${task.imageName}`);
         await this.simulateDelay();
     }
     simulateDelay() {
@@ -56,9 +56,9 @@ class Worker {
     }
     async process(task) {
         this.busy = true;
-        console.log(`👷 Worker ${this.id} procesando tarea ${task.id}`);
+        console.log(` Worker ${this.id} procesando tarea ${task.id}`);
         await task.strategy.process(task);
-        console.log(`✅ Worker ${this.id} terminó tarea ${task.id}`);
+        console.log(` Worker ${this.id} terminó tarea ${task.id}`);
         this.busy = false;
     }
 }
@@ -71,7 +71,7 @@ class ImageProcessingServer {
         }
     }
     receiveTask(task) {
-        console.log(`📥 Nueva tarea ${task.id} recibida`);
+        console.log(` Nueva tarea ${task.id} recibida`);
         this.queue.enqueue(task);
         this.dispatch();
     }
