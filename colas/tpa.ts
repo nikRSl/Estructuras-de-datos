@@ -53,7 +53,7 @@ class TaskQueue {
   }
 }
 
-class Worker {
+class ProcessWorker {
   private busy = false;
 
   constructor(private readonly id: number) {}
@@ -75,11 +75,11 @@ class Worker {
 
 class ImageProcessingServer {
   private queue = new TaskQueue();
-  private workers: Worker[] = [];
+  private workers: ProcessWorker[] = [];
 
   constructor(workerCount: number) {
     for (let i = 1; i <= workerCount; i++) {
-      this.workers.push(new Worker(i));
+      this.workers.push(new ProcessWorker(i));
     }
   }
 
